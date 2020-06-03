@@ -20,7 +20,7 @@ export async function seed(knex: Knex) {
     },
     {
       title: 'Resíduos Orgânicos',
-      image: 'Orgânicos.svg',
+      image: 'organicos.svg',
     },
     {
       title: 'Óleo de Cozinha',
