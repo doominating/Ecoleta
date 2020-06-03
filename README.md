@@ -62,10 +62,11 @@ npm dev
 ## Roadmap
 
 - (**DONE**) Creates backend project;
-- (**IN PROGRESS**) Creates frontend project;
+- (**DONE**) Creates frontend project;
 - (**IN PROGRESS**) Creates mobile project;
 - (**IN PROGRESS**) Implements advanced features;
 - Refactoring to improve the code readability;
+- Adds a modal on success creates new point @frontend;
 
 ## License
 
