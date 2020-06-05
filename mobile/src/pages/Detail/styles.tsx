@@ -1,9 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 export default StyleSheet.create({
+  safeAreaView: {
+    flex: 1,
+    paddingVertical: Platform.OS === 'android' ? 35 : 0,
+  },
+
   container: {
     flex: 1,
-    padding: 32,
+    paddingHorizontal: 32,
     paddingTop: 20,
   },
 
@@ -52,6 +57,7 @@ export default StyleSheet.create({
     borderColor: '#999',
     paddingVertical: 20,
     paddingHorizontal: 32,
+    paddingBottom: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
