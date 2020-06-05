@@ -1,11 +1,15 @@
-import { StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
+import { StyleSheet, Platform } from 'react-native';
 
 export default StyleSheet.create({
+  safeAreaView: {
+    flex: 1,
+    paddingTop: Platform.OS === 'android' ? 35 : 0,
+  },
+
   container: {
     flex: 1,
     paddingHorizontal: 32,
-    paddingTop: 20 + Constants.statusBarHeight,
+    paddingTop: 20,
   },
 
   title: {

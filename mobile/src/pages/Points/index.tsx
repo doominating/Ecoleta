@@ -1,5 +1,12 @@
 import React from 'react';
-import { Image, View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  Image,
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
 import { Feather as Icon } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
@@ -19,7 +26,7 @@ const Points = () => {
   }
 
   return (
-    <>
+    <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.container}>
         <TouchableOpacity onPress={handleNavigateBack}>
           <Icon name='arrow-left' size={20} color='#34cb79' />
@@ -116,7 +123,7 @@ const Points = () => {
           </TouchableOpacity>
         </ScrollView>
       </View>
-    </>
+    </SafeAreaView>
   );
 };
 
