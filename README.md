@@ -63,10 +63,14 @@ npm dev
 
 - (**DONE**) Creates backend project;
 - (**DONE**) Creates frontend project;
-- (**IN PROGRESS**) Creates mobile project;
+- (**DONE**) Creates mobile project;
 - (**IN PROGRESS**) Implements advanced features;
+- Adds a success/fail modal on creates new point @frontend;
+- Dynamically loads UF/City to filter points in home page @mobile;
+- Add point address @frontend/mobile;
+- Add point infos @frontend/mobile;
+- Add "Or use my location" feature to select dynamically points in near region;
 - Refactoring to improve the code readability;
-- Adds a modal on success creates new point @frontend;
 
 ## License
 
