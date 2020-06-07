@@ -5,6 +5,8 @@ import { Map, TileLayer, Marker } from 'react-leaflet';
 import axios from 'axios';
 import { LeafletMouseEvent } from 'leaflet';
 
+import Dropzone from '../../components/Dropzone/';
+
 import api from '../../services/api';
 
 import './styles.css';
@@ -40,6 +42,8 @@ const CreatePoint = () => {
   const [selectedCity, setSelectedCity] = useState('0');
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
+  const [selectedFile, setSelectedFile] = useState<File>();
+
   const [selectedPositon, setSelectedPosition] = useState<[number, number]>([
     0,
     0,
@@ -53,6 +57,8 @@ const CreatePoint = () => {
     name: '',
     email: '',
     whatsapp: '',
+    description: '',
+    address: '',
   });
 
   const history = useHistory();
@@ -116,14 +122,14 @@ const CreatePoint = () => {
     setSelectedPosition([event.latlng.lat, event.latlng.lng]);
   }
 
-  function handleImputChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
 
     setFormData({ ...formData, [name]: value });
   }
 
   function handleSelectItem(id: number) {
-    const alreadySelected = selectedItems.findIndex((item) => item == id);
+    const alreadySelected = selectedItems.findIndex((item) => item === id);
 
     if (alreadySelected >= 0) {
       const filteredItems = selectedItems.filter((item) => item !== id);
@@ -137,22 +143,28 @@ const CreatePoint = () => {
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    const { name, email, whatsapp } = formData;
+    const { name, email, whatsapp, description, address } = formData;
     const uf = selectedUf;
     const city = selectedCity;
     const [latitude, longitude] = selectedPositon;
     const items = selectedItems;
 
-    const data = {
-      name,
-      email,
-      whatsapp,
-      uf,
-      city,
-      latitude,
-      longitude,
-      items,
-    };
+    const data = new FormData();
+
+    data.append('name', name);
+    data.append('email', email);
+    data.append('whatsapp', whatsapp);
+    data.append('description', description);
+    data.append('uf', uf);
+    data.append('city', city);
+    data.append('address', address);
+    data.append('latitude', String(latitude));
+    data.append('longitude', String(longitude));
+    data.append('items', items.join(','));
+
+    if (selectedFile) {
+      data.append('image', selectedFile);
+    }
 
     await api.post('points', data);
 
@@ -177,6 +189,8 @@ const CreatePoint = () => {
           Cadastro do <br /> ponto de coleta
         </h1>
 
+        <Dropzone onFileUploaded={setSelectedFile} />
+
         <fieldset>
           <legend>
             <h2>Dados</h2>
@@ -188,7 +202,7 @@ const CreatePoint = () => {
               type='text'
               name='name'
               id='name'
-              onChange={handleImputChange}
+              onChange={handleInputChange}
             />
           </div>
 
@@ -199,7 +213,7 @@ const CreatePoint = () => {
                 type='email'
                 name='email'
                 id='email'
-                onChange={handleImputChange}
+                onChange={handleInputChange}
               />
             </div>
             <div className='field'>
@@ -208,9 +222,18 @@ const CreatePoint = () => {
                 type='text'
                 name='whatsapp'
                 id='whatsapp'
-                onChange={handleImputChange}
+                onChange={handleInputChange}
               />
             </div>
+          </div>
+
+          <div className='fieldTextArea'>
+            <label htmlFor='description'>Descrição (opcional)</label>
+            <textarea
+              name='description'
+              id='description'
+              // onInput={handleInputChange}
+            />
           </div>
         </fieldset>
         <fieldset>
@@ -261,6 +284,17 @@ const CreatePoint = () => {
                 ))}
               </select>
             </div>
+          </div>
+          <div className='field'>
+            <label htmlFor='name'>
+              Rua, Nº, Bairro, Apto, Complemento (opcional)
+            </label>
+            <input
+              type='text'
+              name='address'
+              id='address'
+              onChange={handleInputChange}
+            />
           </div>
         </fieldset>
         <fieldset>

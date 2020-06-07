@@ -71,7 +71,8 @@
   display: flex;
 }
 
-#page-create-point form .field {
+#page-create-point form .field,
+#page-create-point form .fieldTextArea {
   flex: 1;
 
   display: flex;
@@ -81,7 +82,8 @@
 
 #page-create-point form .field input[type=text],
 #page-create-point form .field input[type=email],
-#page-create-point form .field input[type=number] {
+#page-create-point form .field input[type=number],
+#page-create-point form .fieldTextArea textarea {
   flex: 1;
   background: #F0F0F5;
   border-radius: 8px;
@@ -89,6 +91,14 @@
   padding: 16px 24px;
   font-size: 16px;
   color: #6C6C80;
+}
+
+#page-create-point form .fieldTextArea {
+  height: 150px;
+}
+
+#page-create-point form .fieldTextArea textarea {
+  height: 200px;
 }
 
 #page-create-point form .field select {
@@ -117,11 +127,11 @@
   cursor: not-allowed;
 }
 
-#page-create-point form .field-group .field + .field {
+#page-create-point form .field-group .field+.field {
   margin-left: 24px;
 }
 
-#page-create-point form .field-group input + input {
+#page-create-point form .field-group input+input {
   margin-left: 24px;
 }
 
@@ -154,8 +164,8 @@
   font-weight: bold;
   font-size: 16px;
   border: 0;
-  align-self: flex-end;
-  margin-top: 40px;
+  align-self: center;
+  margin-top: 60px;
   transition: background-color 0.2s;
   cursor: pointer;
 }
