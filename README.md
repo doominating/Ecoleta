@@ -65,11 +65,13 @@ npm dev
 - (**DONE**) Creates frontend project;
 - (**DONE**) Creates mobile project;
 - (**IN PROGRESS**) Implements advanced features;
+- (**IN PROGRESS**) Add point address @frontend/mobile;
+- (**IN PROGRESS**) Add point infos @frontend/mobile;
 - Adds a success/fail modal on creates new point @frontend;
+- Add multer fileFilter for image size and type @frontend;
 - Dynamically loads UF/City to filter points in home page @mobile;
-- Add point address @frontend/mobile;
-- Add point infos @frontend/mobile;
-- Add "Or use my location" feature to select dynamically points in near region;
+- Add "Or use my location" feature to select dynamically points in near region @mobile;
+- Refactoring upload images serializations @backend;
 - Refactoring to improve the code readability;
 
 ## License
